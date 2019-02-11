@@ -1,9 +1,4 @@
 <?php
-    echo 
-    echo 
-    echo 
-?>
-<?php
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $f=fopen("dht22.txt", "a");
        $hum = 'niiskus: ' . htmlspecialchars($_GET["niiskus"]) . ',';
