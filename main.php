@@ -1,3 +1,24 @@
+<?php
+    if(isset($_GET["kp"] && $_GET["kp2"])){
+        $f=fopen("dht22.txt", "a");
+        $kp = $_GET["kp"];
+        $kp2 = $_GET["kp2"];
+        $data = [];
+        foreach($f as $line){
+            $splitline = $line.explode("|",$line);
+            $date = strtotime($splitline[1]);
+            if($date>=$kp && $date<=$kp2){
+                array_push($data, $line)
+            }
+        }
+    }
+
+    $f=fopen("dht22.txt", "a");
+    $data = [];
+    foreach($f as $line){
+        array_push($data, $line);
+    }
+?>
 <html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
