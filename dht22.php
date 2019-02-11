@@ -3,7 +3,7 @@
     $temp = 'temperatuur: ' . htmlspecialchars($_GET["temp"]) . ', ';
     $ht = 'heat index: ' . htmlspecialchars($_GET["ht"]) . ' ';
     $date = date("Y-m-d h-i-s");
-    $data = $hum.$temp.$ht.$date.';'.'\n';
+    $data = $hum.$temp.$ht.$date."\n";
     $f=fopen("dht22.txt", "a"); 
        fwrite($f, $data);
        fclose($f);
