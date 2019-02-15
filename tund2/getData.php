@@ -6,5 +6,4 @@
         array_push($data,fgets($file));
     }
     fclose($file);
-    echo json_encode($data);
 ?> 
