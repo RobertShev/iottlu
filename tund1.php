@@ -17,8 +17,8 @@
           <li class="breadcrumb-item active">Tund 1</li>
         </ol>
     <form method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
-        <input type="submit" name="sees" value="sees">
-        <input type="submit" name="valjas" value="väljas">
+        <input type="submit" name="sees" value="sees" class="btn btn-success">
+        <input type="submit" name="valjas" value="väljas" class="btn btn-danger">
 <?php if($_GET['rel']!='tab'){ echo "</div>";} ?>
 
 
