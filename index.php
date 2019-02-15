@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+	ini_set("error_reporting", 1);
+	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
+	if($_GET['rel']!='tab'){
+?>
 <html lang="en">
 
 <head>
@@ -19,6 +26,27 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script>
+	$(function(){
+		$("a[rel='tab']").click(function(e){
+			pageurl = $(this).attr('href');
+			$.ajax({url:pageurl+'?rel=tab',success: function(data){
+				$('#content').html(data);
+			}});
+			if(pageurl!=window.location){
+				window.history.pushState({path:pageurl},'',pageurl);	
+			}
+			return false;  
+		});
+	});
+	$(window).bind('popstate', function() {
+		$.ajax({url:location.pathname+'?rel=tab',success: function(data){
+			$('#content').html(data);
+		}});
+	});
+   </script>
 
 </head>
 
@@ -60,11 +88,11 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>Kaustad</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+        <div id='menu' class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Tunnid:</h6>
-          <a class="dropdown-item" href="/tund1/">Tund 1</a>
-          <a class="dropdown-item" href="/tund2/">Tund 2</a>
-          <a class="dropdown-item" href="/tund3/">Tund 3</a>
+          <a rel='tab' class="dropdown-item" href="tund1.php">Tund 1</a>
+          <a rel='tab' class="dropdown-item" href="tund2.php">Tund 2</a>
+          <a rel='tab' class="dropdown-item" href="tund3.php">Tund 3</a>
         </div>
       </li>
       <li class="nav-item">
@@ -87,7 +115,8 @@
         </ol>
 
         <!-- Page Content -->
-        <?php include 'pages/tund2/index.php'?>
+        <div id='content'>
+        <?php } ?>
 
       </div>
       <!-- /.container-fluid -->
