@@ -1,8 +1,11 @@
 <?php
+    $data = array();
     $file = fopen("dht22raw.txt","r");
     while(! feof($file))
     {
-        echo fgets($file). "<br />";
+        array_push($data,fgets($file));
     }
     fclose($file);
+    echo($data);
+    //echo json_encode($data);
 ?> 
