@@ -1,5 +1,5 @@
 <?php
-    $file = fopen("dht22taw.txt","r");
+    $file = fopen("dht22raw.txt","r");
     while(! feof($file))
     {
         echo fgets($file). "<br />";
