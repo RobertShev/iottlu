@@ -10,9 +10,15 @@
         fclose($f);
     }
 ?>
-<?php if($_GET['rel']!='tab'){ echo "</div>";} ?>
+<ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="index.php">TLU IOT</a>
+          </li>
+          <li class="breadcrumb-item active">Tund 1</li>
+        </ol>
     <form method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
         <input type="submit" name="sees" value="sees">
         <input type="submit" name="valjas" value="väljas">
+<?php if($_GET['rel']!='tab'){ echo "</div>";} ?>
 
 

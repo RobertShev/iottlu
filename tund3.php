@@ -1,4 +1,9 @@
-<?php if($_GET['rel']!='tab'){ echo "</div>";} ?>
+<ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="index.php">TLU IOT</a>
+          </li>
+          <li class="breadcrumb-item active">Tund 3</li>
+        </ol>
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
@@ -497,3 +502,7 @@
 
       </div>
       <!-- /.container-fluid -->
+      <script src="js/demo/datatables-demo.js"></script>
+      <script src="vendor/datatables/jquery.dataTables.js"></script>
+      <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+      <?php if($_GET['rel']!='tab'){ echo "</div>";} ?>
