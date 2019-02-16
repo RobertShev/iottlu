@@ -29,10 +29,21 @@
     </div>
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
+<p id="demo"></p>
 
 <!-- Page level plugin JavaScript-->
 <script src="vendor/chart.js/Chart.min.js"></script>
- 
+<script>
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj[1];
+    }
+    };
+    xmlhttp.open("GET", "pages/tund2/getData.php", true);
+    xmlhttp.send();
+</script>
 <!-- Demo scripts for this page-->
 <script src="js/demo/chart-area-demo.js"></script>
 <?php if($_GET['rel']!='tab'){ echo "</div>";} ?>
