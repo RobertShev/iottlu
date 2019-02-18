@@ -25,7 +25,7 @@
         <i class="fas fa-chart-area"></i>
     Niiskus</div>
     <div class="card-body">
-        <canvas id="myAreaChart" width="100%" height="30"></canvas>
+    <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiODVmZTc3ZWEtMjRjYi00ZGNhLTljM2YtNmUxZGM0OWJmMDgyIiwidCI6ImVkMDE1NmY4LTFlOWUtNDE2ZC1hYWZlLWY2ZTIxYzAzNzMxMSJ9" frameborder="0" allowFullScreen="true"></iframe>
     </div>
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
