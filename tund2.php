@@ -4,21 +4,6 @@
     </li>
     <li class="breadcrumb-item active">Tund 2</li>
 </ol>
-
-<div class="breadcrumb">
-    <div class="form-group row">
-        <label for="start-date-input" class="col-2 col-form-label">Alates</label>
-        <div class="col-10">
-            <input class="form-control" type="date" value="2011-08-19" id="start-date-input">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="end-date-input" class="col-2 col-form-label">Kuni</label>
-        <div class="col-10">
-            <input class="form-control" type="date" value="2018-08-19" min="2018-01-01" max="2018-12-31" id="end-date-input">
-        </div>
-    </div>
-</div>
 <!--Chart Part-->
 <div class="card mb-3">
     <div class="card-header">
