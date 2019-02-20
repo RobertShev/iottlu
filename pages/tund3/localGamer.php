@@ -3,4 +3,5 @@
     $f=fopen("LocalState.txt", "w"); 
     fwrite($f, $data);
     fclose($f);
+    echo($data);
 ?>
