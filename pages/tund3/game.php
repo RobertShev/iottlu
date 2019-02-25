@@ -1,4 +1,15 @@
 <?php
+    $mode = $_GET["gameMode"];
+    $modeRef = 0;
+    if($mode == "LvsL"){$modeRef= 1; echo "mode is LvsL\n";} 
+    else if($mode == "LvsO"){$modeRef= 1; echo "mode is LvsO\n";} 
+    else if($mode == "OvsO"){$modeRef= 1; echo "mode is OvsO\n";}
+    if($modeRef = 1){
+        $f=fopen("mode.txt", "w");
+        fwrite($f, $mode);
+        fclose($f);
+    }else{echo "gameMode is not recognized";}
+
     echo("Game started");
     if(isset($_POST['submit']))
     {
@@ -41,10 +52,33 @@
                 $selected = $radio_value;
                 break;
         }
+        $data = array();
+        $file = fopen("taken.txt","r");
+        while(!feof($file))
+        {
+            array_push($data,fgets($file));
+        }
+        fclose($file);
+        $dataSize = sizeof($data);
+        $taken = 0;
+        if($dataSize>0){
+            for($i=0; $i<$dataSize; $i++){
+                if($data[$i] == $selected){
+                    $taken = 1;
+                }
+            }
+        }
+        if($taken == 0)
+        {
             $f=fopen("WebState.txt", "w");
             fwrite($f, $selected);
             fclose($f);
+            $f=fopen("taken.txt", "a");
+            fwrite($f, $selected."\n");
+            fclose($f);            
         }
+        else{echo("Location taken");}
+    }
 ?>
 <form method="post" action="">
             <input type="radio" name="radio" id="1x1" value="1x1"/>
