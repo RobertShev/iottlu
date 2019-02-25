@@ -4,7 +4,8 @@
     if($mode == "LvsL"){$modeRef= 1; echo "mode is LvsL\n";} 
     else if($mode == "LvsO"){$modeRef= 1; echo "mode is LvsO\n";} 
     else if($mode == "OvsO"){$modeRef= 1; echo "mode is OvsO\n";}
-    if($modeRef = 1){
+    if($modeRef = 1)
+    {
         $f=fopen("mode.txt", "w");
         fwrite($f, $mode);
         fclose($f);
@@ -52,22 +53,28 @@
                 $selected = $radio_value;
                 break;
         }
-        $data = array();
+
+        $takenValues = array();
         $file = fopen("taken.txt","r");
+
         while(!feof($file))
         {
-            array_push($data,fgets($file));
+            array_push($takenValues,fgets($file));
         }
+
         fclose($file);
-        $dataSize = sizeof($data);
+
+        $dataSize = sizeof($takenValues);
+        echo(" ".$dataSize." ");
         $taken = 0;
+
         if($dataSize>0){
-            for($i=0; $i<$dataSize; $i++){
-                if($data[$i] == $selected){
-                    $taken = 1;
-                }
+            if(in_array($selected, $takenValues)){
+                echo("taken");
+                $taken = 1;
             }
         }
+
         if($taken == 0)
         {
             $f=fopen("WebState.txt", "w");
@@ -76,8 +83,7 @@
             $f=fopen("taken.txt", "a");
             fwrite($f, $selected."\n");
             fclose($f);            
-        }
-        else{echo("Location taken");}
+        }else{echo("Location taken");}
     }
 ?>
 <form method="post" action="">
