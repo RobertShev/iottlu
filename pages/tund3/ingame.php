@@ -64,35 +64,23 @@
         * where 0 untaken, 1 taken by first player , 2 taken by second player;
         * each number place represents location from 0 to 8 (9 locations);
     */ 
-        $dataSize = sizeof($data);
-        $taken = 0;
-        $file = fopen("taken.txt","r");
-        
-        while(!feof($file))
-        {
-            array_push($data,fgets($file));
-        }
-        fclose($file);
-      
-        if($dataSize>0){
-            for($i=0; $i<$dataSize; $i++){
-                if($data[$i] == $location){
-                    $taken = 1;
-                }
-            }
-        }
-
-        if($taken == 0){
+        $file = file_get_contents("locationTest.txt");
+        $locations = str_split($file);
+        if($locations[$location]==0){
             return 1;
-        }
-       
+        }else{
+            return 0;
+        }  
     }
 
     function saveResponse($location){
+        // save to location.txt in form of 012112020;
         return 1;
     }
+
     //create better function name, instead of decideWinner
     function decideWinner(){
+        // compare all possible ways of winning with current state of locations
         return 1;
     }
 ?>
