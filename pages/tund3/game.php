@@ -103,5 +103,18 @@
 </form>
 <section id="gameState">
     <a>Game state</a>
-    <p id="test"></p>
+    <pre></pre>
 </section>
+<script>
+    var poemDisplay = document.querySelector("pre");
+
+    function updateDisplay() {
+    var url = "location.txt";
+    fetch(url).then(function(response) {
+        response.text().then(function(text) {
+        poemDisplay.textContent = text;
+        });
+    });
+    }
+    setInterval(updateDisplay, 500);
+</script>
