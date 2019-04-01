@@ -1,103 +1,84 @@
 <?php
-    $mode = $_GET["gameMode"];
-    $modeRef = 0;
-    if($mode == "LvsL"){$modeRef= 1; echo "mode is LvsL\n";} 
-    else if($mode == "LvsO"){$modeRef= 1; echo "mode is LvsO\n";} 
-    else if($mode == "OvsO"){$modeRef= 1; echo "mode is OvsO\n";}
-    if($modeRef = 1)
+    $gamerMode = $_GET["gamer"];
+
+    if($gamerMode == "A"){$gamer= 1; echo "Player A\n";} 
+    else if($gamerMode == "B"){$gamer= 2; echo "Player B\n";} 
+    else 
     {
-        $f=fopen("mode.txt", "w");
-        fwrite($f, $mode);
-        fclose($f);
-    }else{echo "gameMode is not recognized";}
+        $message = "wrong gamer definition";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
 
     echo("Game started");
     if(isset($_POST['submit']))
     {
         $radio_value = $_POST["radio"];
         switch ($radio_value) {
-            case "1x1":
+            case "0":
                 echo " equals 1x1";
                 $selected = $radio_value;
                 break;
-            case "1x2":
+            case "1":
                 echo " equals 1x2";
                 $selected = $radio_value;
                 break;
-            case "1x3":
+            case "2":
                 echo " equals 1x3";
                 $selected = $radio_value;
                 break;
-            case "2x1":
+            case "3":
                 echo " equals 2x1";
                 $selected = $radio_value;
                 break;
-            case "2x2":
+            case "4":
                 echo " equals 2x2";
                 $selected = $radio_value;
                 break;
-            case "2x3":
+            case "5":
                 echo " equals 2x3";
                 $selected = $radio_value;
                 break;
-            case "3x1":
+            case "6":
                 echo " equals 3x1";
                 $selected = $radio_value;
                 break;
-            case "3x2":
+            case "7":
                 echo " equals 3x2";
                 $selected = $radio_value;
                 break;
-            case "3x3":
+            case "8":
                 echo " equals 3x3";
                 $selected = $radio_value;
                 break;
         }
-
-        $takenValues = array();
-        $file = fopen("taken.txt","r");
-
-        while(!feof($file))
+        
+        $file = file_get_contents("location.txt");
+        $locations = str_split($file);
+        if($locations[$selected]==0)
         {
-            array_push($takenValues,fgets($file));
+            $oldLocations = fopen("location.txt", "w");
+            $locations[$location]=$gamer;
+            
+            $newLocation = implode('', $locations); 
+            
+            fwrite($oldLocations, $newLocation);
+            fclose($oldLocations);
+            
         }
-
-        fclose($file);
-
-        $dataSize = sizeof($takenValues);
-        echo(" ".$dataSize." ");
-        $taken = 0;
-
-        if($dataSize>0){
-            if(in_array($selected, $takenValues)){
-                echo("taken");
-                $taken = 1;
-            }
-        }
-
-        if($taken == 0)
-        {
-            $f=fopen("WebState.txt", "w");
-            fwrite($f, $selected);
-            fclose($f);
-            $f=fopen("taken.txt", "a");
-            fwrite($f, $selected."\n");
-            fclose($f);            
-        }else{echo("Location taken");}
     }
 ?>
 <form method="post" action="">
-    <input type="radio" name="radio" id="1x1" value="1x1"/>
-    <input type="radio" name="radio" id="1x2" value="1x2"/>
-    <input type="radio" name="radio" id="1x3" value="1x3"/>
+    <input type="radio" name="radio" id="0" value="0"/>
+    <input type="radio" name="radio" id="1" value="1"/>
+    <input type="radio" name="radio" id="2" value="2"/>
     <br />
-    <input type="radio" name="radio" id="2x1" value="2x1"/>
-    <input type="radio" name="radio" id="2x2" value="2x2"/>
-    <input type="radio" name="radio" id="2x3" value="2x3"/>
+    <input type="radio" name="radio" id="3" value="3"/>
+    <input type="radio" name="radio" id="4" value="4"/>
+    <input type="radio" name="radio" id="5" value="5"/>
     <br />
-    <input type="radio" name="radio" id="3x1" value="3x1"/>
-    <input type="radio" name="radio" id="3x2" value="3x2"/>
-    <input type="radio" name="radio" id="3x3" value="3x3"/>
+    <input type="radio" name="radio" id="6" value="6"/>
+    <input type="radio" name="radio" id="7" value="7"/>
+    <input type="radio" name="radio" id="8" value="8"/>
     <br />
     <input type="submit" name="submit" value="submit"/>
 </form>
