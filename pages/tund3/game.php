@@ -87,17 +87,21 @@
     }
 ?>
 <form method="post" action="">
-            <input type="radio" name="radio" id="1x1" value="1x1"/>
-            <input type="radio" name="radio" id="1x2" value="1x2"/>
-            <input type="radio" name="radio" id="1x3" value="1x3"/>
-            <br />
-            <input type="radio" name="radio" id="2x1" value="2x1"/>
-            <input type="radio" name="radio" id="2x2" value="2x2"/>
-            <input type="radio" name="radio" id="2x3" value="2x3"/>
-            <br />
-            <input type="radio" name="radio" id="3x1" value="3x1"/>
-            <input type="radio" name="radio" id="3x2" value="3x2"/>
-            <input type="radio" name="radio" id="3x3" value="3x3"/>
-            <br />
-            <input type="submit" name="submit" value="submit"/>
-            </form>
+    <input type="radio" name="radio" id="1x1" value="1x1"/>
+    <input type="radio" name="radio" id="1x2" value="1x2"/>
+    <input type="radio" name="radio" id="1x3" value="1x3"/>
+    <br />
+    <input type="radio" name="radio" id="2x1" value="2x1"/>
+    <input type="radio" name="radio" id="2x2" value="2x2"/>
+    <input type="radio" name="radio" id="2x3" value="2x3"/>
+    <br />
+    <input type="radio" name="radio" id="3x1" value="3x1"/>
+    <input type="radio" name="radio" id="3x2" value="3x2"/>
+    <input type="radio" name="radio" id="3x3" value="3x3"/>
+    <br />
+    <input type="submit" name="submit" value="submit"/>
+</form>
+<section id="gameState">
+    <a>Game state</a>
+    <p id="test"></p>
+</section>
