@@ -53,13 +53,13 @@
         }
         
         $file = file_get_contents("location.txt");//str
-        $locations = str_split($file);//arr
+        $locations = str_split($file,1);//arr
         if($locations[$selected]==0)
         {
             $oldLocations = fopen("location.txt", "w");
-            $locations[$location]=$gamer;
+            $locations[$selected]=$gamer;
             
-            $newLocation = implode('', $locations); //To-DO chech why gets last part not whole string
+            $newLocation = implode("", $locations); //To-DO chech why gets last part not whole string
             
             fwrite($oldLocations, $newLocation);
             fclose($oldLocations);
