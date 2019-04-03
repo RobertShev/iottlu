@@ -8,6 +8,11 @@
         $message = "wrong gamer definition";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
+    if(isset($_POST['restore'])){
+        $restoringFile = fopen("location.txt", "w");
+        fwrite($restoringFile, "000000000");
+        fclose($restoringFile);
+    }
 
     echo("Game started");
     if(isset($_POST['submit']))
@@ -81,6 +86,9 @@
     <input type="radio" name="radio" id="8" value="8"/>
     <br />
     <input type="submit" name="submit" value="submit"/>
+</form>
+<form method="post" action="">
+    <input type="submit" name="restore" value="restore"/>
 </form>
 <section id="gameState">
     <a>Game state</a>
