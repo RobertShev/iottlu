@@ -84,7 +84,8 @@
         return 1;
     }
 
-    function decideWinner(){
+    function decideWinner()
+    {
         $file = file_get_contents("location.txt");
         $locations = str_split($file);
         while($locationsAvailable){
@@ -177,7 +178,6 @@
                         return 0;
                 }
             }else{return 0;}
-        }
-        
+        }   
     }
 ?>

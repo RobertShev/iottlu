@@ -1,8 +1,8 @@
 <?php
     $gamerMode = $_GET["gamer"];
-
-    if($gamerMode == "A"){$gamer= 1; echo "Player A\n";} 
-    else if($gamerMode == "B"){$gamer= 2; echo "Player B\n";} 
+    
+    if($gamerMode == "A"){$gamer = 1; echo "Player A\n";} 
+    else if($gamerMode == "B"){$gamer = 2; echo "Player B\n";} 
     else 
     {
         $message = "wrong gamer definition";
@@ -64,12 +64,119 @@
             $oldLocations = fopen("location.txt", "w");
             $locations[$selected]=$gamer;
             
-            $newLocation = implode("", $locations); //To-DO chech why gets last part not whole string
+            $newLocation = implode("", $locations); 
             
             fwrite($oldLocations, $newLocation);
             fclose($oldLocations);
-            
+            $winner = decideWinner($locations);
+            echo ("test".$winner);
+            if($winner != 0)
+            {
+                if($winner == 1)
+                {
+                    $winnerAlert = 'A';
+                }
+                else if($winner == 2)
+                {
+                    $winnerAlert = 'B';
+                }
+            }
         }
+    }
+
+    function decideWinner($locations)
+    {
+        if($locations[0] == $locations[1] && $locations[1] == $locations[2])
+        {
+            switch($location[0])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }     
+        }
+        else if($locations[3] == $locations[4] && $locations[4] == $locations[5]){
+            switch($location[3])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }
+        }
+        else if($locations[6] == $locations[7] && $locations[7] == $locations[8]){
+            switch($location[6])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }
+    
+        }
+        else if($locations[0] == $locations[3] && $locations[3] == $locations[6]){
+            switch($location[0])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }    
+        }
+        else if($locations[1] == $locations[4] && $locations[4] == $locations[7]){
+            switch($location[0])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }
+        }
+        else if($locations[2] == $locations[5] && $locations[5] == $locations[8]){
+            switch($location[0])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }
+        }
+        else if($locations[0] == $locations[4] && $locations[4] == $locations[8]){
+            switch($location[0])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }
+        }
+        else if($locations[2] == $locations[4] && $locations[4] == $locations[6]){
+            switch($location[0])
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                case 0:
+                    return 0;
+            }
+        }
+        else{return 0;}
     }
 ?>
 <form method="post" action="">
