@@ -9,7 +9,10 @@
         $message = "wrong gamer definition";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
-    if(isset($_POST['restore'])){
+    if(isset($_POST['restore'])){gameRestart();}
+
+    function gamerestart()
+    {
         $restoringFile = fopen("location.txt", "w");
         fwrite($restoringFile, "000000000");
         fclose($restoringFile);
@@ -31,9 +34,12 @@
             {
                 $winnerAlert = 'B';
             }
+            
             echo '<script language="javascript">';
             echo 'alert("Gamer '.$winnerAlert.' Won!")';
             echo '</script>';
+
+            gameRestart();
             $winnerCall = $winner;
         }
     }
