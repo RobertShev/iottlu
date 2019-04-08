@@ -1,5 +1,6 @@
 <?php
     $gamerMode = $_GET["gamer"];
+    $winnerCall = 0;
     
     if($gamerMode == "A"){$gamer = 1; echo "Player A\n";} 
     else if($gamerMode == "B"){$gamer = 2; echo "Player B\n";} 
@@ -12,6 +13,28 @@
         $restoringFile = fopen("location.txt", "w");
         fwrite($restoringFile, "000000000");
         fclose($restoringFile);
+    }
+
+    while($winnerCall = 0)
+    {
+        $file = file_get_contents("location.txt");//str
+        $locations = str_split($file,1);//arr
+
+        $winner = decideWinner($locations);
+
+        if($winner != 0)
+        {
+            if($winner == 1)
+            {
+                $winnerAlert = 'A';
+            }
+            else if($winner == 2)
+            {
+                $winnerAlert = 'B';
+            }
+            echo ("test".$winner);
+            $winnerCall = $winner;
+        }
     }
 
     echo("Game started");
@@ -68,19 +91,6 @@
             
             fwrite($oldLocations, $newLocation);
             fclose($oldLocations);
-            $winner = decideWinner($locations);
-            echo ("test".$winner);
-            if($winner != 0)
-            {
-                if($winner == 1)
-                {
-                    $winnerAlert = 'A';
-                }
-                else if($winner == 2)
-                {
-                    $winnerAlert = 'B';
-                }
-            }
         }
     }
 
@@ -88,7 +98,7 @@
     {
         if($locations[0] == $locations[1] && $locations[1] == $locations[2])
         {
-            switch($location[0])
+            switch($locations[0])
             {
                 case 1:
                     return 1;
@@ -99,7 +109,7 @@
             }     
         }
         else if($locations[3] == $locations[4] && $locations[4] == $locations[5]){
-            switch($location[3])
+            switch($locations[3])
             {
                 case 1:
                     return 1;
@@ -110,7 +120,7 @@
             }
         }
         else if($locations[6] == $locations[7] && $locations[7] == $locations[8]){
-            switch($location[6])
+            switch($locations[6])
             {
                 case 1:
                     return 1;
@@ -122,7 +132,7 @@
     
         }
         else if($locations[0] == $locations[3] && $locations[3] == $locations[6]){
-            switch($location[0])
+            switch($locations[0])
             {
                 case 1:
                     return 1;
@@ -133,7 +143,7 @@
             }    
         }
         else if($locations[1] == $locations[4] && $locations[4] == $locations[7]){
-            switch($location[0])
+            switch($locations[1])
             {
                 case 1:
                     return 1;
@@ -144,7 +154,7 @@
             }
         }
         else if($locations[2] == $locations[5] && $locations[5] == $locations[8]){
-            switch($location[0])
+            switch($locations[2])
             {
                 case 1:
                     return 1;
@@ -155,7 +165,7 @@
             }
         }
         else if($locations[0] == $locations[4] && $locations[4] == $locations[8]){
-            switch($location[0])
+            switch($locations[0])
             {
                 case 1:
                     return 1;
@@ -166,7 +176,7 @@
             }
         }
         else if($locations[2] == $locations[4] && $locations[4] == $locations[6]){
-            switch($location[0])
+            switch($locations[2])
             {
                 case 1:
                     return 1;
