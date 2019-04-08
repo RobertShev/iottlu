@@ -34,10 +34,11 @@
             {
                 $winnerAlert = 'B';
             }
-            
+            /*
             echo '<script language="javascript">';
             echo 'alert("Gamer '.$winnerAlert.' Won!")';
             echo '</script>';
+            */
 
             gameRestart();
             $winnerCall = $winner;
@@ -220,15 +221,28 @@
     <pre></pre>
 </section>
 <script>
-    var poemDisplay = document.querySelector("pre");
+    var resultDisplay = document.querySelector("pre");
 
     function updateDisplay() {
     var url = "location.txt";
     fetch(url).then(function(response) {
         response.text().then(function(text) {
-        poemDisplay.textContent = text;
+        resultDisplay.textContent = text;
         });
+        let gameResult = resultDisplay.textContent;
+        var gameResultArr =  gameResult.split("");
+        if(gameResultArr[0] == gameResultArr[1] == gameResult[2]){
+            alert("Gamer A Won!");
+            restartGame();
+        }else if(gameResult == '222000000'){
+            alert("Gamer A Won!");
+        }else if(gameResult == '000222000'){
+        }
     });
+    function restartGame(){
+        file = fopen("location.txt", 3);
+        fwrite(file, "000000000");
+    }
     }
     setInterval(updateDisplay, 500);
 </script>
