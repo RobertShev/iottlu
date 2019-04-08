@@ -14,12 +14,11 @@
         fwrite($restoringFile, "000000000");
         fclose($restoringFile);
     }
-
-    while($winnerCall = 0)
+    
+    do
     {
-        $file = file_get_contents("location.txt");//str
-        $locations = str_split($file,1);//arr
-
+        $file = file_get_contents("location.txt");
+        $locations = str_split($file,1);
         $winner = decideWinner($locations);
 
         if($winner != 0)
@@ -32,10 +31,13 @@
             {
                 $winnerAlert = 'B';
             }
-            echo ("test".$winner);
+            echo '<script language="javascript">';
+            echo 'alert("Gamer '.$winnerAlert.' Won!")';
+            echo '</script>';
             $winnerCall = $winner;
         }
     }
+    while($winnerCall = 0);
 
     echo("Game started");
     if(isset($_POST['submit']))
