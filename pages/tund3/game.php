@@ -100,6 +100,21 @@
             
             fwrite($oldLocations, $newLocation);
             fclose($oldLocations);
+
+            $timestamp = time();
+            $statistics = $timestamp.",".$gamer.",".$selected;
+
+            $dataset = array
+            (
+                $statistics
+            );
+
+            $statisticsFile = fopen("stats.csv", "a");
+            foreach ($dataset as $line)
+            {
+                fputcsv($statisticsFile,explode(',',$line));
+            }
+            fclose($statisticsFile); 
         }
     }
 
@@ -231,13 +246,13 @@
         });
         let gameResult = resultDisplay.textContent;
         var gameResultArr =  gameResult.split("");
-        if(gameResultArr[0] == gameResultArr[1] == gameResult[2]){
+        /*if(gameResultArr[0] == gameResultArr[1] == gameResult[2]){
             alert("Gamer A Won!");
             restartGame();
         }else if(gameResult == '222000000'){
             alert("Gamer A Won!");
         }else if(gameResult == '000222000'){
-        }
+        }*/
     });
     function restartGame(){
         file = fopen("location.txt", 3);
